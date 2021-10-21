@@ -1,9 +1,13 @@
 from flask import Flask, request, jsonify
 import random
- 
+
 app = Flask(__name__)
 app.config["DEBUG"] = True
 
+
+@app.route('/', methods=['GET'])
+def home():
+	return "<h1>Nomads Spain app</h1><p>Clustering users api.</p>"
 
 @app.route('/api/nomad_cluster', methods=['GET'])
 def get_by_id():
