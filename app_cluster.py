@@ -2,7 +2,6 @@ from flask import Flask, request, jsonify
 import random
 
 app = Flask(__name__)
-app.config["DEBUG"] = True
 
 @app.route('/', methods=['GET'])
 def home():
@@ -15,4 +14,5 @@ def api_cluster():
 
     return jsonify({'user_id': user_id, 'cluster': random.randint(0,5), 'surf': surf})
 
-app.run()
+if __name__ == '__main__':
+    app.run(debug=True)
