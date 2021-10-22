@@ -7,7 +7,7 @@ app = Flask(__name__)
 def home():
 	return "<h1>Nomads Spain app</h1><p>Clustering users api.</p>"
 
-@app.route('/api/nomad_cluster', methods=['GET'])
+@app.route('/cluster', methods=['GET'])
 def api_cluster():
     user_id = int(request.get_json()['user_id'])
     surf = int(bool(request.get_json()['surf']))
