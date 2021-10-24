@@ -1,0 +1,31 @@
+{
+  "_id": "6172a562284bf0c3a4c8632a",
+  "interests": {
+    "burguers": false,
+    "mediterranean": true,
+    "indian": false,
+    "sushi": false,
+    "italian": false,
+    "chinese": false,
+    "drinks": false,
+    "coffee": true,
+    "sunsets": false,
+    "parties": false,
+    "surf": true,
+    "fitness": false,
+    "volley": false,
+    "paddle": true,
+    "climbing": false,
+    "running": false,
+    "football": false,
+    "trecking": false,
+    "museums": false,
+    "bookstores": true,
+    "theaters": false,
+    "movies": false,
+    "guidedVisits": false,
+    "concerts": false,
+    "parks": false,
+    "ruralTourism": false
+  }
+}
