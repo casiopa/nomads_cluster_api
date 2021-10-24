@@ -10,7 +10,7 @@ def home():
 @app.route('/cluster', methods=['GET'])
 def api_cluster():
     user_id = int(request.get_json()['user_id'])
-    surf = int(bool(request.get_json()['surf']))
+    surf = int(bool(request.get_json()['Surf']))
 
     return jsonify({'user_id': user_id, 'cluster': random.randint(0,5), 'surf': surf})
 
