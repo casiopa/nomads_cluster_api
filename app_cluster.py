@@ -17,7 +17,7 @@ def home():
 
 
 @app.route('/cluster', methods=['GET'])
-@cross_origin()
+@cross_origin(origin='*',headers=['Content-Type'] , methods=['GET'])
 def api_cluster():
     new_user = pd.DataFrame.from_dict(request.get_json(force=True)['interests'], orient='index').T
     new_user = new_user.reindex(columns = ['climbing', 'fitness', 'football', 'paddle', 'running', 'surf',
