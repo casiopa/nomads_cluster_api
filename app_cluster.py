@@ -26,10 +26,11 @@ def api_cluster():
                                         'chinese', 'indian', 'italian', 'mediterranean', 'sushi', 'coffee',
                                         'drinks', 'parties', 'sunsets'])
     new_user = new_user.astype('int')
+    print(new_user.columns)
     _id = request.get_json(force=True)['_id']
 
-    cluster = model.predict(new_user)
-    cluster = int(cluster[0])
+    cluster = int(model.transform(new_user).argmax())
+    print(cluster)
 
     return jsonify({"_id": _id, "cluster": cluster})
 
