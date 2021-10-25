@@ -29,7 +29,7 @@ def api_cluster():
     print(new_user.columns)
     _id = request.get_json(force=True)['_id']
 
-    cluster = int(model.transform(new_user).argmax())
+    cluster = int(model.transform(new_user).argmax()) + 1
     print(cluster)
 
     return jsonify({"_id": _id, "cluster": cluster})
