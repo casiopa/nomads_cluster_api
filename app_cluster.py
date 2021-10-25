@@ -1,9 +1,13 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS, cross_origin
 from joblib import load
 import pandas as pd
 
 
 app = Flask(__name__)
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
+
 model = load('model/model.pkl')
 
 
@@ -13,6 +17,7 @@ def home():
 
 
 @app.route('/cluster', methods=['GET'])
+@cross_origin()
 def api_cluster():
     new_user = pd.DataFrame.from_dict(request.get_json(force=True)['interests'], orient='index').T
     new_user = new_user.reindex(columns = ['climbing', 'fitness', 'football', 'paddle', 'running', 'surf',
@@ -25,9 +30,8 @@ def api_cluster():
 
     cluster = model.predict(new_user)
     cluster = int(cluster[0])
-    print(cluster)
 
     return jsonify({"_id": _id, "cluster": cluster})
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()
