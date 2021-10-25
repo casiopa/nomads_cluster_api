@@ -4,6 +4,7 @@ import pandas as pd
 
 
 app = Flask(__name__)
+model = load('model/model.pkl')
 
 
 @app.route('/', methods=['GET'])
@@ -29,5 +30,4 @@ def api_cluster():
     return jsonify({"_id": _id, "cluster": cluster})
 
 if __name__ == '__main__':
-    model = load('model/model.pkl')
     app.run(debug=True)
