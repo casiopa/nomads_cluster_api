@@ -27,7 +27,7 @@ Un vez entrenado el modelo lo exportamos como objeto pickle y ya podemos empezar
 
 En este caso montaremos un endpoint al que la app *Digital&Nomads* haga una petición POST enviando los datos del usuario como un objeto JSON. Este JSON lo recibe la aplicación Flask alojada en Heroku, con esos datos el modelo hace la predicción y se devuelve otro JSON con el cluster adjudicado.
 
-![Esquema peticion POST](images\API-heroku_esquema.png)
+![Esquema peticion POST](images/API-heroku_esquema.png)
 
 Para un mínimo producto viable el alojamiento gratuito de la APP en Heroku puede resultar la mejor opción aunque hay que tener en cuenta que tras 30 minutos de inactividad la aplicación entra en modo reposo y que tenemos un límite de 512MB de RAM.
 
