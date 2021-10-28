@@ -15,7 +15,11 @@ Más opciones para la creación y activación de entornos virtuales con Conda [a
 
 
 ## Modelo de clustering NMF
-...
+Para entrenar el modelo que segmentara los usuarios en grupos con intereses afines realizamos una encuenta anónima que contestaron 115 personas. La información recogida está disponible en este [archivo csv](model\Nómadas digitales y viajeros incondicionales (Responses) - Form Responses 2.csv).
+
+Realizamos un `one-hot-encoding` de las variables obteniendo un dataFrame con 26 variables o columnas. El resultado fue una matriz dispersa con un grado de sparsity de casi el 70%. Por ello decidimos utilizar el algoritmo de factorización matricial no negativa o NMF (Non-negative matrix factorization) para realizar el clustering de usuarios.
+
+El preprocesado de la encuesta y el entranado del modelo pueden verse en el notebook: [NomDig_NMF.ipynb](model\NomDig_NMF.ipynb)
 
 ## Puesta en producción del modelo NMF de clustering con Flask y Heroku
 
@@ -30,8 +34,51 @@ Para un mínimo producto viable el alojamiento gratuito de la APP en Heroku pued
 ### Creación de la app
 Nuestra app Flask está en el archivo `app_cluster.py` cuyo código es el siguiente:
 ```
+from flask import Flask, request, jsonify
+from flask_cors import CORS, cross_origin
+from joblib import load
+import pandas as pd
 
+
+app = Flask(__name__)
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
+
+model = load('model/model.pkl')
+
+
+@app.route('/', methods=['GET'])
+def home():
+	return "<h1>Nomads Spain app</h1><p>Clustering users api.</p>"
+
+
+@app.route('/cluster', methods=['POST'])
+@cross_origin(origin='*',headers=['Content-Type'] , methods=['POST'])
+def api_cluster():
+    new_user = pd.DataFrame.from_dict(request.get_json(force=True)['interests'], orient='index').T
+    new_user = new_user.reindex(columns = ['climbing', 'fitness', 'football', 'paddle', 'running', 'surf',
+                                        'trecking', 'volley', 'bookstores', 'concerts', 'guidedVisits',
+                                        'movies', 'museums', 'parks', 'ruralTourism', 'theaters', 'burguers',
+                                        'chinese', 'indian', 'italian', 'mediterranean', 'sushi', 'coffee',
+                                        'drinks', 'parties', 'sunsets'])
+    new_user = new_user.astype('int')
+    print(new_user.columns)
+    _id = request.get_json(force=True)['_id']
+
+    cluster = int(model.transform(new_user).argmax()) + 1
+    print(cluster)
+
+    return jsonify({"_id": _id, "cluster": cluster})
+
+if __name__ == '__main__':
+    app.run()
 ```
+#### Tips para aplicación Flask en Heroku
+- `app.run()`. La ejecución de nuestra aplicación, para el despliegue en Heroku, debe hacerse dentro de la cláusula `if __name__ == '__main__':`. Heroku realiza su propia ejecución, no entra en el condicional if. Si el método `.run()` se encuentra fuera del if la aplicación no funcionará cuando se despliegue en Heroku.
+- No incluyas más código que `app.run()` en `if __name__ == '__main__':`. Heroku no lo va a ejecutar.
+- Recuerda preprocesar el json de entrada para que se adecúe a lo que espera el modelo. En nuestro caso tuvimos que ordenar las variables con un método `.reindex()`
+- Método GET o POST. Inicialmente utilizábamos un método GET para la petición del cluster. Al hacer pruebas en local de la app funcionaba bien. Incluso al desplegar la app en Heroku y hacer pruebas con Postman funcionaba bien pero cuando el equipo de desarrollo de 'Digitals&Nomads` realizaba la petición devolvía un error 400. La solución fue cambiar el método a POST. Puede parece obvio para algunos, pero hemos encontrado ejemplos de puesta en producción que utilizan ambos métodos. En caso de error en la petición es aconsejable probar a cambiar el método a POST.
+
 
 ### Deploy en Heroku
 La puesta en producción de una aplicación en Heroku es bastante sencilla. En primer lugar tenemos que preparar los archivos necesarios:
