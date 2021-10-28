@@ -1,6 +1,6 @@
-# nomads_cluster_api
+# Cluster de usuarios para app Digital&Nomads
  
-La app *Digital&Nomads* requería de un servicio que agrupara a los usuarios según sus intereses una vez hecho el registro y para ello hemos desarrollado una API que devuelve el grupo al que pertence cada usuario una vez aplicado un modelo de clustering.
+La app *Digital&Nomads* requería de un servicio que agrupara a los usuarios según sus intereses una vez hecho el registro y para ello hemos desarrollado una API que devuelve el grupo al que pertence cada usuario según sus intereses gracias a un modelo de clustering NMF.
 
 ## Creación de un entorno virtual
 
@@ -31,7 +31,8 @@ Para un mínimo producto viable el alojamiento gratuito de la APP en Heroku pued
 app_cluster.py
 
 ### Deploy en Heroku
-Para hacer el deploy son necesarios los siguientes archivos:
+La puesta en producción de una aplicación en Heroku es bastante sencilla. En primer lugar tenemos que preparar los archivos necesarios:
+
 - `requirements.txt`: lista de dependencias de Python
 ```
 Flask==1.1.1
@@ -53,4 +54,22 @@ web: gunicorn app_cluster:app
 ```
 python-3.8.8
 ```
-- `app_cluster.py`: la app
+- `app_cluster.py`: la app Flask
+
+
+Lo siguiente que debemos hacer es abrir una cuenta en Heroku y crear una nueva app.
+
+![Nueva app en Heroku](images/heroku-newApp.png)
+
+Si entramos en la página de la app recién creada y en la pestaña Deploy, veremos que tenemos 3 formas de alojar la aplicación en Heroku. En este caso utilicé *Connnect to GitHub*. De esta forma solo tenemos que enlazar la app con un repositorio que ya tengamos subido a GitHub. 
+
+![Deployment Methods](images/heroku-deployMethod.png)
+
+En caso de que el repositorio tenga muchos archivos que los verdaderamente necesarios para el despligue de la app será mejor utilizar la primera opción que vemos en la imagen: Heroku Git. Alojando los archivos necesarios en el Git de Heroku podemos seleccionar exactamente qué archivos subimos.
+
+
+
+
+Referencias:
+- [Productionize a Machine Learning model with Flask and Heroku](https://towardsdatascience.com/productionize-a-machine-learning-model-with-flask-and-heroku-8201260503d2)
+- [Serving a model with Flask](https://guillaumegenthial.github.io/serving.html)
