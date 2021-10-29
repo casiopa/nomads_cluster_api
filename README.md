@@ -1,6 +1,6 @@
-# API-Cluster de usuarios para app Digital&Nomads
+# API-Cluster de usuarios para app DigitalAndNomads
  
-La app *Digital&Nomads* requería de un servicio que agrupara a los usuarios según sus intereses una vez hecho el registro y para ello hemos desarrollado una API que devuelve el grupo al que pertence cada usuario según sus intereses gracias a un modelo de clustering NMF.
+La app *DigitalAndNomads* requería de un servicio que agrupara a los usuarios según sus intereses una vez hecho el registro y para ello hemos desarrollado una API que devuelve el grupo al que pertence cada usuario según sus intereses gracias a un modelo de clustering NMF.
 
 ## Creación de un entorno virtual
 
@@ -17,7 +17,17 @@ Más opciones para la creación y activación de entornos virtuales con Conda [a
 ## Modelo de clustering NMF
 Para entrenar el modelo que segmentara los usuarios en grupos con intereses afines realizamos una encuenta anónima que contestaron 115 personas. La información recogida está disponible en este [archivo csv](model\Nómadas digitales y viajeros incondicionales (Responses) - Form Responses 2.csv).
 
-Realizamos un `one-hot-encoding` de las variables obteniendo un dataFrame con 26 variables o columnas. El resultado fue una matriz dispersa con un grado de sparsity de casi el 70%. Por ello decidimos utilizar el algoritmo de factorización matricial no negativa o NMF (Non-negative matrix factorization) para realizar el clustering de usuarios.
+Realizamos un `one-hot-encoding` de las variables obteniendo un dataFrame con 26 variables o columnas. El resultado fue una matriz dispersa con un grado de sparsity de casi el 70%. Por ello decidimos utilizar el algoritmo de factorización matricial no negativa o NMF (`Non-negative matrix factorization`) para realizar el clustering de usuarios.
+
+En la siguiente imagen podemos ver los valores asignados por el algoritmo a cada interés de los usuarios para cada segmento.
+
+![Esquema peticion POST](NMFComponentValuesHeatmap.png)
+
+Si escogemos los valores más altos para cada segmento nos hacemos una buena idea los intereses asociados:
+- Segmento 0: Chinese food, Burgers, Movies, Italian food, Coffee, Indian food
+- Segmento 1: Rural tourism, Mediterranean food, Trecking, Visitas guiadas
+- Segmento 2: Drinks at nigth, Parties, Concerts
+- Segmento 3: Theaters, Museums, Fitness, Bookstores, Movies
 
 El preprocesado de la encuesta y el entranado del modelo pueden verse en el notebook: [NomDig_NMF.ipynb](model\NomDig_NMF.ipynb)
 
