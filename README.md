@@ -15,7 +15,7 @@ Más opciones para la creación y activación de entornos virtuales con Conda [a
 
 
 ## Modelo de clustering NMF
-Para entrenar el modelo que segmentara los usuarios en grupos con intereses afines realizamos una encuenta anónima que contestaron 115 personas. La información recogida está disponible en este [archivo csv](model\Nómadas digitales y viajeros incondicionales (Responses) - Form Responses 2.csv).
+Para entrenar el modelo que segmentara los usuarios en grupos con intereses afines realizamos una encuenta anónima que contestaron 115 personas. La información recogida está disponible en este [archivo csv](model/Nómadas digitales y viajeros incondiionales (Responses) - Form Responses 2.csv).
 
 Realizamos un `one-hot-encoding` de las variables obteniendo un dataFrame con 26 variables o columnas. El resultado fue una matriz dispersa con un grado de sparsity de casi el 70%. Por ello decidimos utilizar el algoritmo de factorización matricial no negativa o NMF (`Non-negative matrix factorization`) para realizar el clustering de usuarios.
 
