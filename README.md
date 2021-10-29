@@ -29,7 +29,7 @@ Si escogemos los valores más altos para cada segmento nos hacemos una buena ide
 - Segmento 2: Drinks at nigth, Parties, Concerts
 - Segmento 3: Theaters, Museums, Fitness, Bookstores, Movies
 
-El preprocesado de la encuesta y el entranado del modelo pueden verse en el notebook: [NomDig_NMF.ipynb](model\NomDig_NMF.ipynb)
+El preprocesado de la encuesta y el entranado del modelo pueden verse en este notebook: [NomDig_NMF.ipynb](model\NomDig_NMF.ipynb)
 
 ## Puesta en producción del modelo NMF de clustering con Flask y Heroku
 
