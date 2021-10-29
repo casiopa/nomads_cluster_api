@@ -17,7 +17,7 @@ Más opciones para la creación y activación de entornos virtuales con Conda [a
 ## Modelo de clustering NMF
 Para entrenar el modelo que segmentara los usuarios en grupos con intereses afines realizamos una encuenta anónima que contestaron 115 personas. La información recogida está disponible en este [archivo csv](https://github.com/casiopa/nomads_cluster_api/blob/549ce8faac7ede42cf06cc4dc6e908c3c5656634/model/N%C3%B3madas%20digitales%20y%20viajeros%20incondicionales%20(Responses)%20-%20Form%20Responses%202.csv).
 
-Realizamos un `one-hot-encoding` de las variables obteniendo un dataFrame con 26 variables o columnas. El resultado fue una matriz dispersa con un grado de sparsity de casi el 70%. Por ello decidimos utilizar el algoritmo de factorización matricial no negativa o NMF (`Non-negative matrix factorization`) para realizar el clustering de usuarios.
+Realizamos un `one-hot-encoding` de las variables obteniendo un dataFrame con 26 variables o columnas. El resultado fue una matriz dispersa con un grado de sparsity de casi el 70%. Por ello escogimos el algoritmo de factorización matricial no negativa o NMF (`Non-negative matrix factorization`) para realizar el clustering de usuarios.
 
 En la siguiente imagen podemos ver los valores asignados por el algoritmo a cada interés de los usuarios para cada segmento.
 
@@ -35,7 +35,7 @@ El preprocesado de la encuesta y el entranado del modelo pueden verse en el note
 
 Un vez entrenado el modelo lo exportamos como objeto pickle y ya podemos empezar a crear la API que dará el servicio. El proceso se activará en el momento en el que usuario, de manera opcional, rellena un formulario con sus intereses para que la aplicación le asigne un sala de chat con usuarios de intereses relacionados y que se encuentren en la misma ciudad.
 
-En este caso montaremos un endpoint al que la app *Digital&Nomads* haga una petición POST enviando los datos del usuario como un objeto JSON. Este JSON lo recibe la aplicación Flask alojada en Heroku, con esos datos el modelo hace la predicción y se devuelve otro JSON con el cluster adjudicado.
+En este caso montaremos un endpoint al que la app *DigitalAndNomads* haga una petición POST enviando los datos del usuario como un objeto JSON. Este JSON lo recibe la aplicación Flask alojada en Heroku, con esos datos el modelo hace la predicción y se devuelve otro JSON con el cluster adjudicado.
 
 ![Esquema peticion POST](images/API-heroku_esquema.png)
 
