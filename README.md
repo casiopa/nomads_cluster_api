@@ -21,7 +21,7 @@ Realizamos un `one-hot-encoding` de las variables obteniendo un dataFrame con 26
 
 En la siguiente imagen podemos ver los valores asignados por el algoritmo a cada interés de los usuarios para cada segmento.
 
-![Esquema peticion POST](NMFComponentValuesHeatmap.png)
+![Heatmap valores de los componentes](images/NMFComponentValuesHeatmap.png)
 
 Si escogemos los valores más altos para cada segmento nos hacemos una buena idea los intereses asociados:
 - Segmento 0: Chinese food, Burgers, Movies, Italian food, Coffee, Indian food
