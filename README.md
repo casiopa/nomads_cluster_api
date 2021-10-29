@@ -15,7 +15,7 @@ Más opciones para la creación y activación de entornos virtuales con Conda [a
 
 
 ## Modelo de clustering NMF
-Para entrenar el modelo que segmentara los usuarios en grupos con intereses afines realizamos una encuenta anónima que contestaron 115 personas. La información recogida está disponible en este [archivo csv](https://github.com/casiopa/nomads_cluster_api/blob/549ce8faac7ede42cf06cc4dc6e908c3c5656634/model/N%C3%B3madas%20digitales%20y%20viajeros%20incondicionales%20(Responses)%20-%20Form%20Responses%202.csv).
+Para entrenar el modelo que segmentara los usuarios en grupos con intereses afines realizamos una encuesta anónima que contestaron 115 personas. La información recogida está disponible en este [archivo csv](https://github.com/casiopa/nomads_cluster_api/blob/549ce8faac7ede42cf06cc4dc6e908c3c5656634/model/N%C3%B3madas%20digitales%20y%20viajeros%20incondicionales%20(Responses)%20-%20Form%20Responses%202.csv).
 
 Realizamos un `one-hot-encoding` de las variables obteniendo un dataFrame con 26 variables o columnas. El resultado fue una matriz dispersa con un grado de sparsity de casi el 70%. Por ello escogimos el algoritmo de factorización matricial no negativa o NMF (`Non-negative matrix factorization`) para realizar el clustering de usuarios.
 
@@ -29,7 +29,7 @@ Si escogemos los valores más altos para cada segmento nos hacemos una buena ide
 - Segmento 2: Drinks at nigth, Parties, Concerts
 - Segmento 3: Theaters, Museums, Fitness, Bookstores, Movies
 
-El preprocesado de la encuesta y el entranado del modelo pueden verse en este notebook: [NomDig_NMF.ipynb](model\NomDig_NMF.ipynb)
+El preprocesado de la encuesta y el entrenado del modelo pueden verse en este notebook: [NomDig_NMF.ipynb](model\NomDig_NMF.ipynb)
 
 ## Puesta en producción del modelo NMF de clustering con Flask y Heroku
 
