@@ -19,7 +19,7 @@ Para entrenar el modelo que segmentara los usuarios en grupos con intereses afin
 
 Realizamos un `one-hot-encoding` de las variables obteniendo un dataFrame con 26 variables o columnas. El resultado fue una matriz dispersa con un grado de sparsity de casi el 70%. Por ello escogimos el algoritmo de factorización matricial no negativa o NMF (`Non-negative matrix factorization`) para realizar el clustering de usuarios.
 
-En la siguiente imagen podemos ver los valores asignados por el algoritmo a cada interés de los usuarios para cada segmento.
+En la siguiente imagen podemos ver un gráfico que representa la matriz de componentes, que recoge los factores asignados por el algoritmo a cada interés de los usuarios para cada segmento.
 
 ![Heatmap valores de los componentes](images/NMFComponentValuesHeatmap.png)
 
