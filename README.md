@@ -24,10 +24,10 @@ En la siguiente imagen podemos ver un gráfico que representa la matriz de compo
 ![Heatmap valores de los componentes](images/NMFComponentValuesHeatmap.png)
 
 Si escogemos los valores más altos para cada segmento nos hacemos una buena idea los intereses asociados:
-- Segmento 0: Chinese food, Burgers, Movies, Italian food, Coffee, Indian food
-- Segmento 1: Rural tourism, Mediterranean food, Trecking, Visitas guiadas
-- Segmento 2: Drinks at nigth, Parties, Concerts
-- Segmento 3: Theaters, Museums, Fitness, Bookstores, Movies
+- Segmento 0: Movies, Mediterranean food, Italian food, Coffee
+- Segmento 1: Mediterranean food, Rural tourism
+- Segmento 2: Drinks at night, Parties, Concerts
+- Segmento 3: Theaters, Mediterranean food
 
 El preprocesado de la encuesta y el entrenado del modelo pueden verse en este notebook: [NomDig_NMF.ipynb](model/NomDig_NMF.ipynb)
 
